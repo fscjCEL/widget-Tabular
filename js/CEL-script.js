@@ -13,9 +13,22 @@ function tabularHandler(){
 	var theTabGroupICLickedOnID = this.id;
 	var evaluateThisParentNodeID = this.parentNode.parentNode.id;
 	var truncatedID = theTabGroupICLickedOnID.substr(0,4);
-	for(var aCT=0;aCT<allCurrentTabs.length;aCT++){
+	for(var aCT=1;aCT<allCurrentTabs.length;aCT++){
 		var checkClassname = allCurrentTabs[aCT].className;
-		alert(checkClassname);
+		if(truncatedID === evaluateThisParentNodeID){
+			var turnOffThisNAVID =  truncatedID+"-nav"+theTabGroupICLickedOnID.substr(8,9);
+			var turnOffThisContentID =  truncatedID+"-content"+theTabGroupICLickedOnID.substr(8,9);
+			//document.getElementById(String(turnOffThisNAVID)).className = "CEL-tabNav";
+			alert(document.getElementById(String(turnOffThisNAVID)).className);
+			if(document.getElementById(String(turnOffThisNAVID)).className === "CEL-tabNav-current") {
+				document.getElementById(String(turnOffThisNAVID)).className = "CEL-tabNav";
+				alert("mad eit");
+			}//end if
+			if(document.getElementById(String(turnOffThisContentID)).className === "CEL-tab-content-current") {
+				document.getElementById(String(turnOffThisNAVID)).className = "visuallyhidden";
+
+			}//end if
+		}//end if
 	}//end for
 
 
