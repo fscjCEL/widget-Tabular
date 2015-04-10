@@ -12,6 +12,7 @@ function tabularHandler(){
 	var allCurrentTabs = document.getElementsByClassName("CEL-tabNav-current");
 	var theTabGroupICLickedOnID = this.id;
 	var evaluateThisParentNodeID = this.parentNode.parentNode.id;
+	
 	var truncatedID = theTabGroupICLickedOnID.substr(0,4);
 	for(var aCT=1;aCT<allCurrentTabs.length;aCT++){
 		var checkClassname = allCurrentTabs[aCT].className;
