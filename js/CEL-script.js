@@ -9,28 +9,37 @@
 /* ANY JQUERY SHOULD RESIDE IN THE DOCUMENT.READY FUNCTION BELOW. */
 
 function tabularHandler(){
-	var allCurrentTabs = document.getElementsByClassName("CEL-tabNav-current");
-	var theTabGroupICLickedOnID = this.id;
-	var evaluateThisParentNodeID = this.parentNode.parentNode.id;
-	
-	var truncatedID = theTabGroupICLickedOnID.substr(0,4);
-	for(var aCT=1;aCT<allCurrentTabs.length;aCT++){
-		var checkClassname = allCurrentTabs[aCT].className;
-		if(truncatedID === evaluateThisParentNodeID){
-			var turnOffThisNAVID =  truncatedID+"-nav"+theTabGroupICLickedOnID.substr(8,9);
-			var turnOffThisContentID =  truncatedID+"-content"+theTabGroupICLickedOnID.substr(8,9);
-			//document.getElementById(String(turnOffThisNAVID)).className = "CEL-tabNav";
-			alert(document.getElementById(String(turnOffThisNAVID)).className);
-			if(document.getElementById(String(turnOffThisNAVID)).className === "CEL-tabNav-current") {
-				document.getElementById(String(turnOffThisNAVID)).className = "CEL-tabNav";
-				alert("mad eit");
-			}//end if
-			if(document.getElementById(String(turnOffThisContentID)).className === "CEL-tab-content-current") {
-				document.getElementById(String(turnOffThisNAVID)).className = "visuallyhidden";
 
-			}//end if
+	var theIndexINeed,theTabChildren,theTabularContainer,theNavChildren,theNavContainer;
+	//gather the tools I need
+	theNavContainer = this.parentNode;
+	theNavChildren = theNavContainer.children;
+	theTabularContainer = this.parentNode.parentNode;
+	theTabChildren = theTabularContainer.children;
+	//reset
+	//rip through all the elements under this context, and reset the class names to default instead of current.
+	for (var ttc=0;ttc<theNavChildren.length;ttc++){
+		//reset the nav item
+		if (theNavChildren[ttc].className ==="CEL-tabNav-current"){
+			theNavChildren[ttc].className ="CEL-tabNav";
+		}//end if
+		//reset the tab item
+		if(theTabChildren[(ttc+1)].className ==="CEL-tab-content-current"){
+			theTabChildren[(ttc+1)].className ="CEL-tab-content";
 		}//end if
 	}//end for
+	//show
+	//grab the item in the nth position, and turn on the corresponding tabular component.
+	//in other words if I click on the 3rd nav element, I am supposed to turn on the 3rd tabular element.
+	//grab the index of what I clicked on and add one to skip the nav container
+	theIndexINeed = (Array.prototype.indexOf.call(theNavChildren, this)) + 1;
+	//change the nav item I clicked on(show)
+	this.className = "CEL-tabNav-current";
+	//change the corresponding tab. (show)
+	theTabChildren[theIndexINeed].className = "CEL-tab-content-current";
+
+
+
 
 
 }//end function
