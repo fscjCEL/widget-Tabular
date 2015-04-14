@@ -113,7 +113,7 @@ li p{margin: 0 auto 0 auto;}
 .CEL-tabNav-current:hover{float: left;display: inline-block;color:#000;background-color: #FFF;border: 1px solid #666; padding: .25em .5em .25em .5em;margin: .25em .25em -.18em 0;border-radius: 3px;}
 	.CEL-tabNav:hover{background-color: #fff;color: #333;}
 
-	.CEL-tab-content{display: none !important;visibility: hidden;}
+	.CEL-tab-content{display: none !important;visibility: hidden;transition: opacity 1s ease-in-out;}
 	.CEL-tab-content-current{float: left;width: 100%;margin: 0;display: inline-block;opacity: 1;padding-top: .5em;transition: opacity 1s ease-in-out;}
 
 

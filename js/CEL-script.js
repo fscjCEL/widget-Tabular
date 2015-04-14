@@ -34,10 +34,12 @@ function tabularHandler(){
 	//grab the index of what I clicked on and add one to skip the nav container
 	theIndexINeed = (Array.prototype.indexOf.call(theNavChildren, this)) + 1;
 	//change the nav item I clicked on(show)
+	//this.className = "CEL-tabNav-current";
+
 	this.className = "CEL-tabNav-current";
 	//change the corresponding tab. (show)
 	theTabChildren[theIndexINeed].className = "CEL-tab-content-current";
-
+	theTabChildren[theIndexINeed].opacity = 1;
 
 
 
