@@ -1,1 +1,169 @@
-# widget-Tabular
+This is a widget that was made to be used within the Center for E-Learning's Learning Object architecture. It can be used anywhere on the web that uses HTML, CSS, and JS to get the job done.
+
+ /* ======================================  The JS Logic     ================================== */
+ // Directions
+ // Paste the JS code at the top of the linked .JS file.
+ // Paste the event listener code into document.ready function
+
+
+// ********************************* STEP 1 (turns the Tab elements into buttons that can be clicked)
+// ********************************* Paste this into document.ready function in the .js file.
+//START copy here.
+	//make sure that the elements exist on the page.
+	if(document.getElementsByClassName("CEL-tabNav") || document.getElementsByClassName("CEL-tabNav-current")){
+		var theTabNavElements,theCurrentTabNavElements;
+		//gather both the current and resting tab nav elements
+		theTabNavElements = document.getElementsByClassName("CEL-tabNav");
+		theCurrentTabNavElements = document.getElementsByClassName("CEL-tabNav-current");
+		//loop through regular tab nav elements to add the event listeners.
+		for(var tb=0;tb<theTabNavElements.length;tb++){
+			theTabNavElements[tb].addEventListener("click",tabularHandler,"false");
+		}//end for
+		// loop through the current tab nav elements to add the event listener.
+		for(var tctne= 0;tctne<theCurrentTabNavElements.length;tctne++){
+			theCurrentTabNavElements[tctne].addEventListener("click",tabularHandler,"false");
+		}// end for
+	}//end if
+//STOP copy here.
+
+// ********************************* STEP 2 - this function handles what happens when a tab button is clicked.
+// ********************************* Paste this function in the supplementary functions section at the top of the JS file.
+
+//START copy here
+	function tabularHandler(){
+		var theIndexINeed,theTabChildren,theTabularContainer,theNavChildren,theNavContainer;
+		//gather the tools I need
+		theNavContainer = this.parentNode;
+		theNavChildren = theNavContainer.children;
+		theTabularContainer = this.parentNode.parentNode;
+		theTabChildren = theTabularContainer.children;
+		//reset
+		//rip through all the elements under this context, and reset the class names to default instead of current.
+		for (var ttc=0;ttc<theNavChildren.length;ttc++){
+			//reset the nav item
+			if (theNavChildren[ttc].className ==="CEL-tabNav-current"){
+				theNavChildren[ttc].className ="CEL-tabNav";
+			}//end if
+			//reset the tab item
+			if(theTabChildren[(ttc+1)].className ==="CEL-tab-content-current"){
+				theTabChildren[(ttc+1)].className ="CEL-tab-content";
+			}//end if
+		}//end for
+		//show
+		theIndexINeed = (Array.prototype.indexOf.call(theNavChildren, this)) + 1;
+		//show the nav item I clicked on(show)
+		this.className = "CEL-tabNav-current";
+		//show the corresponding tab. (show)
+		theTabChildren[theIndexINeed].className = "CEL-tab-content-current";
+		theTabChildren[theIndexINeed].opacity = 1;
+	}//end function
+
+//STOP copy here.
+
+// ********************************* STEP 3 - the HTML structure
+
+<div class="CEL-2col-50-a">
+	<p>Click each tab to reveal the content under each one.</p>
+	<div class="CEL-tabular-container" id="tab1">
+		<div class="CEL-tabNavContainer">
+			<div class="CEL-tabNav-current">Tab One</div>
+			<div class="CEL-tabNav">Tab Two</div>
+			<div class="CEL-tabNav">Tab Three</div>
+			<div class="CEL-tabNav">Tab Four</div>
+		</div><!-- end nav container -->
+		<div class="CEL-tab-content-current">
+			<!-- Insert content here NOTE:this first tab will be showing when the slide loads. -->
+
+		</div><!-- end tab content -->
+		<div  class="CEL-tab-content">
+			<!-- Insert tab content here -->
+
+		</div><!-- end tab content -->
+		<div class="CEL-tab-content">
+			<!-- Insert tab content here. -->
+		</div><!-- end tab content -->
+		<div class="CEL-tab-content">
+			<!-- Insert Tab content here -->
+		</div><!-- end tab content -->
+
+
+
+	</div><!-- end tab container -->
+</div><!-- end 50-a -->
+/* ********************************* (optional) STEP 4 - the CSS Styles */
+/* CSS Styles */
+/* NOTE: These styles should already be there in the CSS, but if not then here they are for you to paste.  */
+
+.CEL-tabular-container
+	{
+		float: left;
+		width: 99%;
+		margin: 0;
+		padding: .5em;
+		display: inline-block;
+		background-color: #ededed;
+		border-radius: 3px;
+	}
+.CEL-tabNavContainer
+	{
+		float: left;
+		width: 100%;
+		margin: 0 .125em .125em 0;
+		padding: 0;
+		display: inline-block;
+		}
+.CEL-tabNav
+	{
+		float: left;
+		display: inline-block;
+		color:#FFF;
+		background-color: #777;
+		border: 1px solid #666;
+		padding: .25em .5em .25em .5em;
+		margin: .25em .25em -.18em 0;
+		border-radius: 3px;
+		}
+.CEL-tabNav-current
+	{
+		float: left;
+		display: inline-block;
+		color:#FFF;
+		background-color: red;
+		border: 1px solid #666;
+		padding: .25em .5em .25em .5em;
+		margin: .25em .25em -.18em 0;
+		border-radius: 3px;
+		}
+.CEL-tabNav-current:hover
+	{
+		float: left;
+		display: inline-block;
+		color:#000;
+		background-color: #FFF;
+		border: 1px solid #666;
+		padding: .25em .5em .25em .5em;
+		margin: .25em .25em -.18em 0;
+		border-radius: 3px;
+		}
+.CEL-tabNav:hover
+	{
+		background-color: #fff;
+		color: #333;
+		}
+
+.CEL-tab-content
+	{
+		display: none !important;
+		visibility: hidden;
+		transition: opacity 1s ease-in-out;
+		}
+.CEL-tab-content-current
+	{
+		float: left;
+		width: 100%;
+		margin: 0;
+		display: inline-block;
+		opacity: 1;
+		padding-top: .5em;
+		transition: opacity 1s ease-in-out;
+		}

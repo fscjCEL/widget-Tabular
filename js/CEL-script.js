@@ -10,6 +10,7 @@
 
 function tabularHandler(){
 
+
 	var theIndexINeed,theTabChildren,theTabularContainer,theNavChildren,theNavContainer;
 	//gather the tools I need
 	theNavContainer = this.parentNode;
@@ -53,13 +54,27 @@ function tabularHandler(){
 
 /* -------------------------------------------------------------------------------------------- begin The Document.Ready function */
 $(document).ready(function(){
-	if(document.getElementsByClassName("CEL-tabNav")){
-		var theTabNavElements = document.getElementsByClassName("CEL-tabNav");
+	//START tabular widget event listener snippet.
+	//make sure that the elements exist on the page.
+	if(document.getElementsByClassName("CEL-tabNav") || document.getElementsByClassName("CEL-tabNav-current")){
+		var theTabNavElements,theCurrentTabNavElements;
+		//gather both the current and resting tab nav elements
+		theTabNavElements = document.getElementsByClassName("CEL-tabNav");
+		theCurrentTabNavElements = document.getElementsByClassName("CEL-tabNav-current");
+		//loop through regular tab nav elements to add the event listeners.
+		for(var tb=0;tb<theTabNavElements.length;tb++){
+			theTabNavElements[tb].addEventListener("click",tabularHandler,"false");
+		}//end for
+		// loop through the current tab nav elements to add the event listener.
+		for(var tctne= 0;tctne<theCurrentTabNavElements.length;tctne++){
+			theCurrentTabNavElements[tctne].addEventListener("click",tabularHandler,"false");
+		}// end for
 	}//end if
-	document.getElementsByClassName("CEL-tabNav-current")[0].addEventListener("click",tabularHandler,"false")
-	for(var tb=0;tb<theTabNavElements.length;tb++){
-		theTabNavElements[tb].addEventListener("click",tabularHandler,"false");
-	}//end for
+	//END tabular widget event listener snippet.
+
+
+
+
 
 	/* this addresses a Mozilla bug that does not reset values in forms upon window.reload */
 	resetForm($('form'));
