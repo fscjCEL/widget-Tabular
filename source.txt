@@ -1,9 +1,7 @@
 This is a widget that was made to be used within the Center for E-Learning's Learning Object architecture. It can be used anywhere on the web that uses HTML, CSS, and JS to get the job done.
 
- /* ======================================  The JS Logic     ================================== */
- // Directions
- // Paste the JS code at the top of the linked .JS file.
- // Paste the event listener code into document.ready function
+ /* ======================================  The JS (Logic)     ================================== */
+ // Directions: Follow each step to insert this into any HTML/CSS/javascript based web page.
 
 
 // ********************************* STEP 1 (turns the Tab elements into buttons that can be clicked)
@@ -61,6 +59,8 @@ This is a widget that was made to be used within the Center for E-Learning's Lea
 //STOP copy here.
 
 // ********************************* STEP 3 - the HTML structure
+// ********************************* paste this into your HTML page anywhere you would like.
+// ********************************* make sure that the ID on each tab container is unique.
 
 <div class="CEL-2col-50-a">
 	<p>Click each tab to reveal the content under each one.</p>
@@ -92,7 +92,7 @@ This is a widget that was made to be used within the Center for E-Learning's Lea
 </div><!-- end 50-a -->
 /* ********************************* (optional) STEP 4 - the CSS Styles */
 /* CSS Styles */
-/* NOTE: These styles should already be there in the CSS, but if not then here they are for you to paste.  */
+/* NOTE: These styles should already be in the CSS, but if not, here they are for you to paste.  */
 
 .CEL-tabular-container
 	{
