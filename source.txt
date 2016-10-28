@@ -2,7 +2,7 @@
  /* STEP ONE: Paste the following javascript code into the custom.js file.
  /* =================================================================================== */
 
-// This file should be used to insert any custom javascript into the page.
+
 var theTabularContainers = document.getElementsByClassName("cel-tabular-container");
 for(var z=0;z<theTabularContainers.length;z++){
     theTabularContainers[z].classList.add("is-card");
@@ -19,17 +19,21 @@ var tabularMethod = {
     tabularHandler:function(){
         //this is called when a tab is clicked and changes the content to the tab clicked upon..
         var theClickedTabNav = this;
-
+        var IDNumberOfClickedTabNav;
         var theTabularParent = this.parentNode.parentNode;
-        var theNumberOfClickedTabNav = theClickedTabNav.id.substr(-1);
-        var theIDOfNeededTab = theTabularParent.id+"-tab-"+theNumberOfClickedTabNav;
+        var theNumberOfClickedTabNav = theClickedTabNav.id.substr(-2);
+        if (theNumberOfClickedTabNav[0]==="-"){
+            IDNumberOfClickedTabNav = theClickedTabNav.id.substr(-1);
+        }else{
+            IDNumberOfClickedTabNav = theClickedTabNav.id.substr(-2);
+        }//end if
+        var theIDOfNeededTab = "cel-tab-"+IDNumberOfClickedTabNav;
         //remove the active classname off the currently active tabNav
         theTabularParent.getElementsByClassName("is-activeTabNav")[0].classList.remove("is-activeTabNav");
         //hide the currently active tab
         theTabularParent.getElementsByClassName("is-activeTab")[0].classList.add("is-invisible");
         //remove the active designation from currently active tab
         theTabularParent.getElementsByClassName("is-activeTab")[0].classList.remove("is-activeTab");
-
         //Add the active class to the tabNav you just clicked.
         theClickedTabNav.classList.add("is-activeTabNav");
         //show the newly clicked tab content
@@ -42,12 +46,10 @@ var theTabNavs = document.getElementsByClassName("cel-tabNav");
 var theTabs = document.getElementsByClassName("cel-tab");
 for (var x=0;x < theTabNavs.length;x++){
     theTabNavs[x].addEventListener("click",tabularMethod.tabularHandler,false);
-    var theTabNavParentID = theTabNavs[x].parentNode.parentNode.id;
-    theTabNavs[x].id = theTabNavParentID+"-nav-"+x;
+    theTabNavs[x].id = "cel-nav-"+x;
 }//end for
 for(var y=0;y<theTabs.length;y++){
-    var theTabParentID = theTabs[y].parentNode.parentNode.id;
-    theTabs[y].id = theTabParentID+"-tab-"+y;
+    theTabs[y].id = "cel-tab-"+y;
 }//end for
 
 
